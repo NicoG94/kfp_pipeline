@@ -2,12 +2,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   generateName: train-recommender-modell-
-  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 0.5.1, pipelines.kubeflow.org/pipeline_compilation_time: '2020-08-07T15:26:47.592256',
+  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 0.5.1, pipelines.kubeflow.org/pipeline_compilation_time: '2020-08-07T15:29:17.784285',
     pipelines.kubeflow.org/pipeline_spec: '{"description": "Train recommender modell
-      pipeline", "inputs": [{"name": "TAG", "type": "String"}, {"default": "True",
-      "name": "make_cv", "optional": true, "type": "Boolean"}, {"default": "False",
-      "name": "make_train_test_split", "optional": true, "type": "Boolean"}], "name":
-      "Train recommender modell"}'}
+      pipeline", "inputs": [{"default": "latest", "name": "TAG", "optional": true,
+      "type": "String"}, {"default": "True", "name": "make_cv", "optional": true,
+      "type": "Boolean"}, {"default": "False", "name": "make_train_test_split", "optional":
+      true, "type": "Boolean"}], "name": "Train recommender modell"}'}
   labels: {pipelines.kubeflow.org/kfp_sdk_version: 0.5.1}
 spec:
   entrypoint: train-recommender-modell
@@ -208,7 +208,7 @@ spec:
       persistentVolumeClaim: {claimName: '{{inputs.parameters.create-pvc-name}}'}
   arguments:
     parameters:
-    - {name: TAG}
+    - {name: TAG, value: latest}
     - name: make_cv
       value: "True"
     - name: make_train_test_split
